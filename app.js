@@ -46,7 +46,7 @@ app.use(function(err, req, res, next) {
 module.exports = app;
 
 app.get('/message', (req, res) => {
-    return 'hello world!';
+    res.send('Login Secces');
 });
 app.listen(3030, () => {
     console.log('server is running at 3030 port.');
