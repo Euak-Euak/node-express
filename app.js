@@ -45,9 +45,6 @@ app.use(function(err, req, res, next) {
 
 module.exports = app;
 
-const express = require('express');
-const app = express();
-
 app.get('/message', (req, res) => {
     return "hello world!";
 });
