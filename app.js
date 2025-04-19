@@ -11,7 +11,7 @@ app.get('/ConnectServer', (req, res) => {
 });
 
 app.post('/UpdatePosition', (req, res) => {
-    const { ID, x, y } = req.body;
+    const { ID, Name, x, y } = req.body;
 
     let message = 'User: ' + String(ID) + '    Move Position X: ' + String(x) + ' Y: ' + String(y);
 
