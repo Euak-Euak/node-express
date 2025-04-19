@@ -9,7 +9,7 @@ app.get('/ConnectServer', (req, res) => {
     res.send('hello world!');
 });
 
-app.post('/UpdatePisition', (req, res => {
+app.post('/UpdatePisition', (req, res) => {
     const { x, y } = req.body;
 
     let message = 'X: ' + String(x) + ' Y: ' + String(y);
