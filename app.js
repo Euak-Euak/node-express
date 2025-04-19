@@ -6,6 +6,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/ConnectServer', (req, res) => {
+    console.log('Login success');
     res.send('hello world!');
 });
 
