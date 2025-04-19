@@ -53,7 +53,7 @@ app.get('/message', (req, res) => {
     };
   
     result.message = 'Hello wolrd!';
-    res.send(result);
+    res.render(result);
 });
 app.listen(3030, () => {
     console.log('server is running at 3030 port.');
