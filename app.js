@@ -15,7 +15,7 @@ app.post('/UpdatePisition', (req, res) => {
     let message = 'X: ' + String(x) + ' Y: ' + String(y);
 
     console.log(message);
-    res.send(result);
+    res.send(message);
 });
 
 module.exports = app;
