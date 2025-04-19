@@ -19,4 +19,13 @@ app.post('/UpdatePosition', (req, res) => {
     res.send(message);
 });
 
+app.post('/UpdateDirection', (req, res) => {
+    const { ID, Name, x, y } = req.body;
+
+    let message = 'User: ' + String(ID) + '    Move Direction X: ' + String(x) + ' Y: ' + String(y);
+
+    console.log(message);
+    res.send(message);
+});
+
 module.exports = app;
