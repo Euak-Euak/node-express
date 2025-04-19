@@ -12,9 +12,7 @@ app.get('/ConnectServer', (req, res) => {
 app.post('/UpdatePisition', (req, res => {
     const { x, y } = req.body;
 
-    let result = {
-        message: String(x) + ' ' + String(y)
-    };
+    let message = 'X: ' + String(x) + ' Y: ' + String(y);
 
     console.log(message);
     res.send(result);
