@@ -40,7 +40,7 @@ app.post('/UpdatePosition', (req, res) => {
 });
 
 app.post('/UpdateDirection', (req, res) => {
-    const { ID, Name, x, y } = req.body;
+    const { ID, Name, X, Y } = req.body;
 
     let message = 'ID' + String(ID) + ' User: ' + String(Name) + '    Move Direction    X: ' + String(x) + ' Y: ' + String(y);
 
