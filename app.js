@@ -2,9 +2,9 @@ const express = require('express');
 const app = express();
 app.use(express.json());
 
-let users1 = {};
+let users1 = [];
 
-let users2 = {};
+let users2 = [];
 
 app.get('/', (req, res) => {
     res.send('hello world!');
@@ -43,7 +43,7 @@ app.post('/UpdatePosition', (req, res) => {
         let user = users2.find(x=>x.ID == ID);
 
         if( user === undefined){
-        users1.push( { ID, X, Y } );
+        users2.push( { ID, X, Y } );
         }
         else
         {
