@@ -27,11 +27,29 @@ app.post('/UpdatePosition', (req, res) => {
 
     if(RoomNumber == 1)
     {
-        users1.push({ID, X, Y});
+        let user = users1.find(x=>x.ID == ID);
+
+        if( user === undefined){
+        users1.push( { ID, X, Y } );
+        }
+        else
+        {
+            user.X = X;
+            user.Y = Y;
+        }
     }
     else(RoomNumber == 2)
     {
-        users2.push({ID, X, Y});
+        let user = users2.find(x=>x.ID == ID);
+
+        if( user === undefined){
+        users1.push( { ID, X, Y } );
+        }
+        else
+        {
+            user.X = X;
+            user.Y = Y;
+        }
     }
     console.log(message);
     res.send(message);
