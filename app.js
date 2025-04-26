@@ -21,19 +21,19 @@ app.post('/Login', (req, res) => {
 });
 
 app.post('/UpdatePosition', (req, res) => {
-    const { ID, Name, x, y, RoomNumber } = req.body;
+    const { ID, Name, X, Y, RoomNumber } = req.body;
 
     let message = 'ID' + String(ID) + ' User: ' + String(Name) + '    Move Position    X: ' + String(x) + ' Y: ' + String(y);
 
     if(RoomNumber == 1)
     {
-        users1[id].X = x;
-        users1[id].Y = y;
+        users1[id].X = X;
+        users1[id].Y = Y;
     }
     else(RoomNumber == 2)
     {
-        users2[id].X = x;
-        users2[id].Y = y;
+        users2[id].X = X;
+        users2[id].Y = Y;
     }
     console.log(message);
     res.send(message);
