@@ -24,7 +24,11 @@ app.post('/UpdatePosition', (req, res) => {
     const { ID, Name, X, Y, RoomNumber } = req.body;
 
     let message = 'ID' + String(ID) + ' User: ' + String(Name) + '    Move Position    X: ' + String(X) + ' Y: ' + String(Y);
-
+    // 로그로 users1, users2 타입을 확인
+    console.log('users1 type:', typeof users1);
+    console.log('users2 type:', typeof users2);
+    console.log('users1 is array:', Array.isArray(users1));  // 배열 여부 확인
+    console.log('users2 is array:', Array.isArray(users2));  // 배열 여부 확인
     if(RoomNumber == 1)
     {
         let user = users1.find(x=>x.ID == ID);
