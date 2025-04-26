@@ -23,7 +23,7 @@ app.post('/Login', (req, res) => {
 app.post('/UpdatePosition', (req, res) => {
     const { ID, Name, X, Y, RoomNumber } = req.body;
 
-    let message = 'ID' + String(ID) + ' User: ' + String(Name) + '    Move Position    X: ' + String(x) + ' Y: ' + String(y);
+    let message = 'ID' + String(ID) + ' User: ' + String(Name) + '    Move Position    X: ' + String(X) + ' Y: ' + String(Y);
 
     if(RoomNumber == 1)
     {
@@ -42,7 +42,7 @@ app.post('/UpdatePosition', (req, res) => {
 app.post('/UpdateDirection', (req, res) => {
     const { ID, Name, X, Y } = req.body;
 
-    let message = 'ID' + String(ID) + ' User: ' + String(Name) + '    Move Direction    X: ' + String(x) + ' Y: ' + String(y);
+    let message = 'ID' + String(ID) + ' User: ' + String(Name) + '    Move Direction    X: ' + String(X) + ' Y: ' + String(Y);
 
     console.log(message);
     res.send(message);
