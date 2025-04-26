@@ -27,13 +27,13 @@ app.post('/UpdatePosition', (req, res) => {
 
     if(RoomNumber == 1)
     {
-        users1[id].X = X;
-        users1[id].Y = Y;
+        users1[ID].X = X;
+        users1[ID].Y = Y;
     }
     else(RoomNumber == 2)
     {
-        users2[id].X = X;
-        users2[id].Y = Y;
+        users2[ID].X = X;
+        users2[ID].Y = Y;
     }
     console.log(message);
     res.send(message);
