@@ -2,6 +2,14 @@ const express = require('express');
 const app = express();
 app.use(express.json());
 
+class Vec
+{
+    constructor(X, Y) {
+        this.X = X;
+        this.Y = Y;
+    }
+}
+
 let users1 = {};
 
 let users2 = {};
@@ -27,13 +35,11 @@ app.post('/UpdatePosition', (req, res) => {
 
     if(RoomNumber == 1)
     {
-        users1[ID].X = X;
-        users1[ID].Y = Y;
+        users1[ID] = new Vec(X, Y);
     }
     else(RoomNumber == 2)
     {
-        users2[ID].X = X;
-        users2[ID].Y = Y;
+        users2[ID] = new Vec(X, Y);
     }
     console.log(message);
     res.send(message);
