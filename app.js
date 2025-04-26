@@ -38,7 +38,7 @@ app.post('/UpdatePosition', (req, res) => {
             user.Y = Y;
         }
     }
-    else(RoomNumber == 2)
+    else
     {
         let user = users2.find(x=>x.ID == ID);
 
