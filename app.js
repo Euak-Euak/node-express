@@ -36,6 +36,7 @@ app.post('/Login', (req, res) => {
         let Coin = 10000;
         let Gem = 10;
         userData.push( { ID, Coin, Gem } );
+        user = userData[ID];
     }
 
     // 로그인 완료 반환 값
@@ -105,8 +106,10 @@ app.post('/UpdateData', (req, res) => {
 app.post('/UpdateItem', (req, res) => {
     const { ID, Coin, Gem } = req.body;
 
-    userData[ID].Coin = Coin;
-    userData[ID].Gem = Gem;
+    let user = userData.find(x=>x.ID == ID);
+
+    user.Coin = Coin;
+    user.Gem = Gem;
     console.log(String(ID) + 'change item: coin' + String(Coin) + ' gem' + String(Gem));
     res.send('Request CL');
 });
