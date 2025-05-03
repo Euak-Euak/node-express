@@ -35,7 +35,7 @@ app.post('/Login', (req, res) => {
     {
         let Coin = 1000;
         let Gem = 10;
-        users1.push( { ID, Coin, Gem } );
+        userData.push( { ID, Coin, Gem } );
     }
 
     // 로그인 완료 반환 값
