@@ -45,7 +45,6 @@ app.post('/Login', (req, res) => {
 // 플레이어 위치 업데이트
 app.post('/AddMatchList', (req, res) => {
     const { ID, Name } = req.body;
-    matchList.push({ ID });
     matchList.push(res);
     
     if(matchList.length >= 2)
