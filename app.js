@@ -50,8 +50,6 @@ app.post('/AddMatchList', (req, res) => {
     
     if(matchList.length >= 2)
     {
-        matchList.splice(0, 2);
-
         const res1 = matchList.shift();
         const res2 = matchList.shift();
 
