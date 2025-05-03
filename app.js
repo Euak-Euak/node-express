@@ -10,6 +10,7 @@ let users2 = [];
 
 let userData = [];
 
+// 매치를 대기 중인 유저 리스트
 let matchList = [];
 
 app.get('/', (req, res) => {
@@ -45,16 +46,18 @@ app.post('/Login', (req, res) => {
 app.post('/AddMatchList', (req, res) => {
     const { ID, Name } = req.body;
     matchList.push({ ID });
-});
-
-app.post('/CheckMatch', (req, res) => {
-    const { ID, Name } = req.body;
-    if(matchList.length >= 2){
+    matchList.push(res);
+    
+    if(matchList.length >= 2)
+    {
         matchList.splice(0, 2);
-        res.send(rooms.length + 1);
-    }
-    else{
-        res.send(1000);
+
+        const res1 = matchList.shift();
+        const res2 = matchList.shift();
+
+        const roomId = rooms.length + 1;
+        res1.send({ roomId });
+        res2.send({ roomId });
     }
 });
 
