@@ -33,7 +33,7 @@ app.post('/Login', (req, res) => {
 
     if(user === undefined)
     {
-        let Coin = 1000;
+        let Coin = 10000;
         let Gem = 10;
         userData.push( { ID, Coin, Gem } );
     }
