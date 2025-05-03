@@ -72,10 +72,10 @@ app.post('/UpdatePosition', (req, res) => {
         rooms.push({ users });
     }
     
-    let user = users1.find(x=>x.ID == ID);
+    let user = rooms[RoomNumber].find(x=>x.ID == ID);
 
     if( user === undefined){
-        users1.push( { ID, X, Y } );
+        rooms[RoomNumber].push( { ID, X, Y } );
     }
     else
     {
