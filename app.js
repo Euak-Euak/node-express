@@ -44,10 +44,11 @@ app.post('/Login', (req, res) => {
 // 플레이어 위치 업데이트
 app.post('/AddMatchList', (req, res) => {
     const { ID, Name } = req.body;
-    match.push({ ID });
+    matchList.push({ ID });
     while(true)
     {
-        if(match.length >= 2){
+        if(matchList.length >= 2){
+            matchList.splice(0, 2);
             res.send(rooms.length + 1);
         }
     }
