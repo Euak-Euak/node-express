@@ -39,7 +39,7 @@ app.post('/Login', (req, res) => {
     }
 
     // 로그인 완료 반환 값
-    res.send(userData[ID]);
+    res.send(user[ID]);
 });
 
 // 플레이어 위치 업데이트
