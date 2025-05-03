@@ -2,59 +2,82 @@ const express = require('express');
 const app = express();
 app.use(express.json());
 
+let rooms = [];
+
 let users1 = [];
 
 let users2 = [];
+
+let userData = [];
+
+let matchList = [];
 
 app.get('/', (req, res) => {
     res.send('hello world!');
 });
 
+// 서버 연결 확인
 app.get('/ConnectServer', (req, res) => {
     res.send('hello world!');
 });
 
+// 로그인 시도
 app.post('/Login', (req, res) => {
+    // 아이디와 패스워드를 받아옴 (현재는 랜덤 생성된 아이디와 지정된 이름을 넘김)
     const { ID, Name } = req.body;
+    // 입장 시 로그 기록 출력
     console.log('Login success ID: ' + String(ID) + 'User: ' + String(Name));
-    res.send('hello world!');
+    
+    let user = userData.find(x=>x.ID == ID);
+
+    if(user === undefined)
+    {
+        let Coin = 1000;
+        let Gem = 10;
+        users1.push( { ID, Coin, Gem } );
+    }
+
+    // 로그인 완료 반환 값
+    res.send(userData[ID]);
 });
 
+// 플레이어 위치 업데이트
+app.post('/AddMatchList', (req, res) => {
+    const { ID, Name } = req.body;
+    match.push({ ID });
+    while(true)
+    {
+        if(match.length >= 2){
+            res.send(rooms.length + 1);
+        }
+    }
+});
+
+// 플레이어 위치 업데이트
 app.post('/UpdatePosition', (req, res) => {
     const { ID, Name, X, Y, RoomNumber } = req.body;
 
     let message = 'ID' + String(ID) + ' User: ' + String(Name) + '    Move Position    X: ' + String(X) + ' Y: ' + String(Y);
-    // 로그로 users1, users2 타입을 확인
-    console.log('users1 type:', typeof users1);
-    console.log('users2 type:', typeof users2);
-    console.log('users1 is array:', Array.isArray(users1));  // 배열 여부 확인
-    console.log('users2 is array:', Array.isArray(users2));  // 배열 여부 확인
-    if(RoomNumber == 1)
-    {
-        let user = users1.find(x=>x.ID == ID);
 
-        if( user === undefined){
+    let room = rooms.find(x=>x.Index == Index);
+
+    if(room === undefined)
+    {
+        let users = [];
+        rooms.push({ users });
+    }
+    
+    let user = users1.find(x=>x.ID == ID);
+
+    if( user === undefined){
         users1.push( { ID, X, Y } );
-        }
-        else
-        {
-            user.X = X;
-            user.Y = Y;
-        }
     }
     else
     {
-        let user = users2.find(x=>x.ID == ID);
-
-        if( user === undefined){
-        users2.push( { ID, X, Y } );
-        }
-        else
-        {
-            user.X = X;
-            user.Y = Y;
-        }
+        user.X = X;
+        user.Y = Y;
     }
+
     console.log(message);
     res.send(message);
 });
@@ -70,15 +93,17 @@ app.post('/UpdateDirection', (req, res) => {
 
 app.post('/UpdateData', (req, res) => {
     const { RoomNumber } = req.body;
+    
+    res.send(rooms[RoomNumber]);
+});
 
-    if(RoomNumber == 1)
-    {
-        res.send(users1);
-    }
-    else
-    {
-        res.send(users2);
-    }
+app.post('/UpdateItem', (req, res) => {
+    const { Coin, Gem } = req.body;
+
+    userData.Coin = Coin;
+    userData.Gem = Gem;
+
+    res.send('Request CL');
 });
 
 module.exports = app;
