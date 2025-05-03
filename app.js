@@ -108,6 +108,13 @@ app.post('/UpdateItem', (req, res) => {
 
     let user = userData.find(x=>x.ID == ID);
 
+    if(user === undefined)
+    {
+        let Coin = 10000;
+        let Gem = 10;
+        userData.push( { ID, Coin, Gem } );
+    }
+    
     user.Coin = Coin;
     user.Gem = Gem;
     console.log(String(ID) + 'change item: coin' + String(Coin) + ' gem' + String(Gem));
