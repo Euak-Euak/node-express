@@ -65,9 +65,9 @@ app.post('/UpdatePosition', (req, res) => {
 
     let message = 'ID' + String(ID) + ' User: ' + String(Name) + '    Move Position    X: ' + String(X) + ' Y: ' + String(Y);
 
-    let room = rooms.find(x=>x.Index == Index);
+    let room = rooms[RoomNumber];
 
-    if(room === undefined)
+    if(!room)
     {
         let users = [];
         rooms.push({ users });
