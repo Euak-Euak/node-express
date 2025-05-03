@@ -103,11 +103,11 @@ app.post('/UpdateData', (req, res) => {
 });
 
 app.post('/UpdateItem', (req, res) => {
-    const { Coin, Gem } = req.body;
+    const { ID, Coin, Gem } = req.body;
 
-    userData.Coin = Coin;
-    userData.Gem = Gem;
-
+    userData[ID].Coin = Coin;
+    userData[ID].Gem = Gem;
+    console.log(String(ID) + 'change item: coin' + String(Coin) + ' gem' + String(Gem));
     res.send('Request CL');
 });
 
