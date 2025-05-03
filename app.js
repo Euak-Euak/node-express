@@ -45,12 +45,13 @@ app.post('/Login', (req, res) => {
 app.post('/AddMatchList', (req, res) => {
     const { ID, Name } = req.body;
     matchList.push({ ID });
-    while(true)
-    {
-        if(matchList.length >= 2){
-            matchList.splice(0, 2);
-            res.send(rooms.length + 1);
-        }
+});
+
+app.post('/CheckMatch', (req, res) => {
+    const { ID, Name } = req.body;
+    if(matchList.length >= 2){
+        matchList.splice(0, 2);
+        res.send(rooms.length + 1);
     }
 });
 
