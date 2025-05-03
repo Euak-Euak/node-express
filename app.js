@@ -53,6 +53,9 @@ app.post('/CheckMatch', (req, res) => {
         matchList.splice(0, 2);
         res.send(rooms.length + 1);
     }
+    else{
+        res.send(1000);
+    }
 });
 
 // 플레이어 위치 업데이트
