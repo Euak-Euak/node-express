@@ -53,7 +53,7 @@ app.post('/AddMatchList', (req, res) => {
         const res1 = matchList.shift();
         const res2 = matchList.shift();
 
-        const roomId = rooms.length + 1;
+        const roomId = rooms.length;
         res1.send({ roomId });
         res2.send({ roomId });
     }
