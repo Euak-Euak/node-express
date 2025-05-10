@@ -55,7 +55,9 @@ app.post('/AddMatchList', (req, res) => {
 
         const roomId = rooms.length;
         user1.response.send({ roomId, Name: user2.name, CharacterIndex: user2.CharacterIndex });
+        console.log(user2.name);
         user2.response.send({ roomId, Name: user1.name, CharacterIndex: user1.CharacterIndex });
+        console.log(user1.name);
     }
 });
 
