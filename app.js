@@ -50,12 +50,12 @@ app.post('/AddMatchList', (req, res) => {
     
     if(matchList.length >= 2)
     {
-        const res1 = matchList.shift();
-        const res2 = matchList.shift();
+        const user1 = matchList.shift();
+        const user2 = matchList.shift();
 
         const roomId = rooms.length;
-        res1.res.send({ roomId, res2.Name, res2.CharacterIndex });
-        res2.res.send({ roomId, res1.Name, res1.CharacterIndex });
+        user1.res.send({ roomId, user2.Name, user2.CharacterIndex });
+        user2.res.send({ roomId, user1.Name, user1.CharacterIndex });
     }
 });
 
