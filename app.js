@@ -56,7 +56,10 @@ app.post('/AddMatchList', (req, res) => {
         console.log(user1.name);
     }
 });
-
+app.post('/Attack', (req, res) => {
+        const { ID, Damage } = req.body;
+    console.log(String(ID) + 'Attack player Damage: ' + String(Damage));
+});
 // 플레이어 위치 업데이트
 app.post('/UpdatePosition', (req, res) => {
     const { ID, Name, X, Y, RoomNumber } = req.body;
