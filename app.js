@@ -4,9 +4,7 @@ app.use(express.json());
 
 let rooms = [];
 
-let users1 = [];
-
-let users2 = [];
+let users = [];
 
 let userData = [];
 
@@ -38,7 +36,7 @@ app.post('/Login', (req, res) => {
         userData.push( { ID, Coin, Gem } );
         user = { ID, Coin, Gem };
     }
-
+    users.push({ ID, res });
     // 로그인 완료 반환 값
     res.send(user);
 });
@@ -101,12 +99,16 @@ app.post('/UpdateData', (req, res) => {
 });
 
 app.post('/Attack', (req, res) => {
-
+    const { ID, Damage } = req.body;
+    let user = users.find(x=>x.ID == ID);
+    
+    if(user === undefined)
+    {
+    }
+    
+    user.res.send({ ID, Damage });
 });
 
-app.post('/UpdateRoomSate', (req, res) => {
-
-});
 
 app.post('/UpdateItem', (req, res) => {
     const { ID, Coin, Gem } = req.body;
