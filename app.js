@@ -45,8 +45,8 @@ app.post('/Login', (req, res) => {
 
 // 플레이어 위치 업데이트
 app.post('/AddMatchList', (req, res) => {
-    const { ID, Name } = req.body;
-    matchList.push(res);
+    const { ID, Name, CharacterIndex } = req.body;
+    matchList.push({ Name, res, CharacterIndex });
     
     if(matchList.length >= 2)
     {
@@ -54,8 +54,8 @@ app.post('/AddMatchList', (req, res) => {
         const res2 = matchList.shift();
 
         const roomId = rooms.length;
-        res1.send({ roomId });
-        res2.send({ roomId });
+        res1.res.send({ roomId, res2.Name, res2.CharacterIndex });
+        res2.res.send({ roomId, res1.Name, res1.CharacterIndex });
     }
 });
 
