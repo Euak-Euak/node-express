@@ -98,6 +98,14 @@ app.post('/UpdateData', (req, res) => {
     res.send(rooms[RoomNumber]);
 });
 
+app.post('/Attack', (req, res) => {
+
+});
+
+app.post('/UpdateRoomSate', (req, res) => {
+
+});
+
 app.post('/UpdateItem', (req, res) => {
     const { ID, Coin, Gem } = req.body;
 
