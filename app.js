@@ -26,41 +26,50 @@ let userSocketMap = new Map(); // userId -> socket 매핑
 // ------------------------- WebSocket 처리 -------------------------
 wss.on('connection', (ws) => {
     console.log('WebSocket 클라이언트 연결됨');
-});
 
-wss.on('message', (message) => {
-    try {
-        const data = JSON.parse(message);
-        const { type, ID, payload } = data;
+    ws.on('message', (message) => {
+        try {
+            const data = JSON.parse(message);
+            const { type, ID, payload } = data;
 
-        switch(type) {
-            case 'init':
-                socketUserMap.set(wss, ID);
-                userSocketMap.set(ID, wss);
-                console.log(`WebSocket 연결된 유저: ${ID}`);
-                break;
+            switch(type) {
+                case 'init':
+                    socketUserMap.set(ws, ID);
+                    userSocketMap.set(ID, ws);
+                    console.log(`WebSocket 연결된 유저: ${ID}`);
+                    break;
 
-            case 'move':
-                // 다른 유저에게 이동 정보 전파
-                broadcastToRoom(ID, {
-                    type: 'move',
-                    ID,
-                    position: payload.position
-                });
-                break;
+                case 'move':
+                    broadcastToRoom(ID, {
+                        type: 'move',
+                        ID,
+                        position: payload.position
+                    });
+                    break;
 
-            case 'attack':
-                broadcastToRoom(ID, {
-                    type: 'attack',
-                    ID,
-                    damage: payload.damage
-                });
-                break;
+                case 'attack':
+                    broadcastToRoom(ID, {
+                        type: 'attack',
+                        ID,
+                        damage: payload.damage
+                    });
+                    break;
+            }
+        } catch (err) {
+            console.log('WebSocket 메시지 파싱 에러:', err.message);
         }
-    } catch (err) {
-        console.log('WebSocket 메시지 파싱 에러:', err.message);
-    }
+    });
+
+    ws.on('close', () => {
+        const userId = socketUserMap.get(ws);
+        if (userId) {
+            console.log(`WebSocket 연결 종료됨: ${userId}`);
+            userSocketMap.delete(userId);
+            socketUserMap.delete(ws);
+        }
+    });
 });
+
 
 wss.on('close', () => {
     const userId = socketUserMap.get(ws);
