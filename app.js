@@ -15,7 +15,7 @@ let matchList = [];
 const server = http.createServer(app);  // Express 앱을 HTTP 서버로 감쌈
 const wss = new WebSocket.Server({ server });  // WebSocket 서버 생성
 
-const PORT = 443;
+const PORT = 3000;
 server.listen(PORT, () => {
     console.log(`HTTP + WebSocket 서버가 포트 ${PORT}에서 실행 중`);
 });
