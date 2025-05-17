@@ -28,7 +28,7 @@ wss.on('connection', (ws) => {
     console.log('WebSocket 클라이언트 연결됨');
 });
 
-ws.on('message', (message) => {
+wss.on('message', (message) => {
     try {
         const data = JSON.parse(message);
         const { type, ID, payload } = data;
@@ -62,7 +62,7 @@ ws.on('message', (message) => {
     }
 });
 
-ws.on('close', () => {
+wss.on('close', () => {
     const userId = socketUserMap.get(ws);
     if (userId) {
         console.log(`WebSocket 연결 종료됨: ${userId}`);
