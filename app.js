@@ -21,6 +21,7 @@ app.get('/ConnectServer', (req, res) => {
 });
 
 app.get('/ConnectServer2', (req, res) => {
+    console.log('ID 2001 - 2002   Result: win - Lose');
     res.send('ID 2001 - 2002   Result: win - Lose');
 });
 
