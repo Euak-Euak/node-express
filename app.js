@@ -20,6 +20,10 @@ app.get('/ConnectServer', (req, res) => {
     res.send('hello world!');
 });
 
+app.get('/ConnectServer2', (req, res) => {
+    res.send('ID 2001 - 2002   Result: win - Lose');
+});
+
 // 로그인 시도
 app.post('/Login', (req, res) => {
     // 아이디와 패스워드를 받아옴 (현재는 랜덤 생성된 아이디와 지정된 이름을 넘김)
