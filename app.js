@@ -35,8 +35,8 @@ wss.on('message', (message) => {
 
         switch(type) {
             case 'init':
-                socketUserMap.set(ws, ID);
-                userSocketMap.set(ID, ws);
+                socketUserMap.set(wss, ID);
+                userSocketMap.set(ID, wss);
                 console.log(`WebSocket 연결된 유저: ${ID}`);
                 break;
 
@@ -67,7 +67,7 @@ wss.on('close', () => {
     if (userId) {
         console.log(`WebSocket 연결 종료됨: ${userId}`);
         userSocketMap.delete(userId);
-        socketUserMap.delete(ws);
+        socketUserMap.delete(wss);
     }
 });
 
