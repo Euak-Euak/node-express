@@ -1,7 +1,6 @@
 const express = require('express');
 const app = express();
 const http = require('http');
-const WebSocket = require('ws');
 
 app.use(express.json());
 
@@ -11,89 +10,6 @@ let userData = [];
 
 // 매치를 대기 중인 유저 리스트
 let matchList = [];
-
-const server = http.createServer(app);  // Express 앱을 HTTP 서버로 감쌈
-const wss = new WebSocket.Server({ server });  // WebSocket 서버 생성
-
-const PORT = 3000;
-server.listen(PORT, () => {
-    console.log(`HTTP + WebSocket 서버가 포트 ${PORT}에서 실행 중`);
-});
-
-let socketUserMap = new Map(); // socket -> userId 매핑
-let userSocketMap = new Map(); // userId -> socket 매핑
-
-// ------------------------- WebSocket 처리 -------------------------
-wss.on('connection', (ws) => {
-    console.log('WebSocket 클라이언트 연결됨');
-
-    ws.on('message', (message) => {
-        try {
-            const data = JSON.parse(message);
-            const { type, ID, payload } = data;
-
-            switch(type) {
-                case 'init':
-                    socketUserMap.set(ws, ID);
-                    userSocketMap.set(ID, ws);
-                    console.log(`WebSocket 연결된 유저: ${ID}`);
-                    break;
-
-                case 'move':
-                    broadcastToRoom(ID, {
-                        type: 'move',
-                        ID,
-                        position: payload.position
-                    });
-                    break;
-
-                case 'attack':
-                    broadcastToRoom(ID, {
-                        type: 'attack',
-                        ID,
-                        damage: payload.damage
-                    });
-                    break;
-            }
-        } catch (err) {
-            console.log('WebSocket 메시지 파싱 에러:', err.message);
-        }
-    });
-
-    ws.on('close', () => {
-        const userId = socketUserMap.get(ws);
-        if (userId) {
-            console.log(`WebSocket 연결 종료됨: ${userId}`);
-            userSocketMap.delete(userId);
-            socketUserMap.delete(ws);
-        }
-    });
-});
-
-
-wss.on('close', () => {
-    const userId = socketUserMap.get(ws);
-    if (userId) {
-        console.log(`WebSocket 연결 종료됨: ${userId}`);
-        userSocketMap.delete(userId);
-        socketUserMap.delete(wss);
-    }
-});
-
-function broadcastToRoom(senderId, message) {
-    // 보낸 사람의 방을 찾아야 함
-    const room = rooms.find(r => r.users.some(u => u.ID === senderId));
-    if (!room) return;
-
-    for (const user of room.users) {
-        if (user.ID !== senderId) {
-            const socket = userSocketMap.get(user.ID);
-            if (socket && socket.readyState === WebSocket.OPEN) {
-                socket.send(JSON.stringify(message));
-            }
-        }
-    }
-}
 
 app.get('/', (req, res) => {
     res.send('hello world!');
